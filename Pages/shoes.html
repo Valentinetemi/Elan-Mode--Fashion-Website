@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elan's Collections Of Shoes </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #1a1a1a;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: #d4af37;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #d4af37;
+        }
+
+        .cart {
+            color: #fff;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .cart span {
+            background-color: #d4af37;
+            color: #1a1a1a;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.toggle span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.toggle span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.toggle span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            margin-top: 60px;
+            overflow: hidden;
+            
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-content a {
+            background-color: #d4af37;
+            color: #1a1a1a;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .hero-content a:hover {
+            background-color: #b8972f;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        /* Products Section */
+        .products {
+            max-width: 1200px;
+            margin: 40px auto 50px;
+            padding: 0 20px;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-item {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .product-item img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .product-item h3 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #1a1a1a;
+        }
+
+        .product-item p {
+            font-size: 1rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .product-item button {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .product-item button:hover {
+            background-color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 50px 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .footer-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-content ul {
+            list-style: none;
+        }
+
+        .footer-content ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-content ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-content ul li a:hover {
+            color: #d4af37;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1023px) {
+            header {
+                padding: 10px 0;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 48px;
+                left: 0;
+                width: 100%;
+                background-color: #1a1a1a;
+                flex-direction: column;
+                padding: 10px 0;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 8px 0;
+            }
+
+            .nav-links li a {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+                display: block;
+            }
+
+            .cart {
+                font-size: 0.8rem;
+            }
+
+            .cart span {
+                padding: 3px 7px;
+                font-size: 0.7rem;
+            }
+
+            .hero {
+                margin-top: 48px;
+                height: 95vh;
+            }
+
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero-content a {
+                padding: 8px 20px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            header {
+                padding: 15px;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                top: 44px;
+            }
+
+            .nav-links li a {
+                font-size: 0.85rem;
+            }
+
+            .cart {
+                font-size: 0.75rem;
+            }
+
+            .cart span {
+                padding: 2px 6px;
+                font-size: 0.65rem;
+            }
+
+            .hero {
+                margin-top: 44px;
+                height: 95vh;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+
+            .hero-content a {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+
+            .products h2 {
+                font-size: 1.8rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-item img {
+                height: 300px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Elan Mode</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#shop">Shop</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="cart" onclick="window.location.href='cart.html'">Cart <span id="cart-count">0</span></div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="Images/Image30.jpg" alt="Street Wears" class="hero-image">
+        <div class="hero-content">
+            <h1>Elan's Collection Of Men's & Women's Shoes</h1>
+            <p>Elevate your style with our premium collection</p>
+            <a href="#shop">Shop Now</a>
+        </div>
+    </section>
+
+    <section class="products" id="shop">
+        <h2>Men's & Women Shoes</h2>
+        <div class="product-grid">
+            <div class="product-item" data-name="Men’s Leather Dress Shoes" data-price="100.00">
+                <img src="Images/Image72.jpg" alt="Men’s Leather Dress Shoes">
+                <h3>Men’s Leather Dress Shoes</h3>
+                <p>$100.00</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="Women’s High Heels" data-price="120.00">
+                <img src="Images/Image97.jpg" alt="Women’s High Heels">
+                <h3>Women’s High Heels</h3>
+                <p>$120.00</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="Men’s Casual Sneakers" data-price="80.00">
+                <img src="Images/Image74.jpg" alt="Men’s Casual Sneakers">
+                <h3>Men’s Casual Sneakers</h3>
+                <p>$80.00</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="Women’s Flat" data-price="170.00">
+                <img src="Images/Image6.jpg" alt="Women’s Flat">
+                <h3>Women’s Flat</h3>
+                <p>$170.00</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="Men’s Chelsea Boots" data-price="190.00">
+                <img src="Images/Image75.jpg" alt="Men’s Chelsea Boots">
+                <h3>Men’s Chelsea Boots</h3>
+                <p>$190.00</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product-item" data-name="Women’s Ankle Boots" data-price="120.00">
+                <img src="Images/Image77.jpg" alt="Women’s Ankle Boots">
+                <h3>Women’s Ankle Boots</h3>
+                <p>$120.00</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Shop Category</h3>
+                <ul>
+                    <li><a href="mens.html">Men’s Suits</a></li>
+                    <li><a href="womens-wear.html">Women’s Wear</a></li>
+                    <li><a href="shoes.html">Shoes</a></li>
+                    <li><a href="watches.html">Watches</a></li>
+                    <li><a href="streetwear.html">Streetwear</a></li>
+                    <li><a href="glasses.html">Glasses</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Get in Touch</h3>
+                <ul>
+                    <li>(89) 982-278-356</li>
+                    <li>contact@elanmode.com</li>
+                    <li>67/A, Green Road, NYC</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Copyright © 2025 All rights reserved | Elan Mode
+        </div>
+    </footer>
+
+    <script>
+        // Cart Functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCountElement = document.getElementById('cart-count');
+
+        function updateCartCount() {
+            cartCountElement.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        }
+
+        function addToCart(button) {
+            const productItem = button.parentElement;
+            const name = productItem.dataset.name;
+            const price = parseFloat(productItem.dataset.price);
+            const existingItem = cart.find(item => item.name === name);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${name} added to cart!`);
+        }
+
+        updateCartCount();
+
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('toggle');
+        });
+    </script>
+</body>
+</html>
