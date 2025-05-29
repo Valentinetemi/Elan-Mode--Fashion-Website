@@ -416,7 +416,7 @@ nav ul li a:hover {
 
 /* Style Guide Section */
 .style-guide {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Images/Image12.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Images/Image12.webp');
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -454,7 +454,7 @@ nav ul li a:hover {
 
 /* About Section */
 .about {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Images/Image23.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Images/Image23.webp');
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -630,7 +630,7 @@ footer {
     }
 
     .slider {
-        height: 80vh; /* Tablet: Slightly shorter */
+        height: 95vh; /* Tablet: Slightly shorter */
         background-size: auto 100%; /* Prioritize height */
     }
 
